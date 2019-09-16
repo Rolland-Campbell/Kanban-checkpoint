@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
+//import { addListener } from 'cluster'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     boards: [],
+    lists: [],
     activeBoard: {}
   },
   mutations: {
@@ -27,6 +29,9 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
+    },
+    setLists(state, lists) {
+      state.lists = lists
     }
   },
   actions: {
@@ -69,17 +74,32 @@ export default new Vuex.Store({
           commit('setBoards', res.data)
         })
     },
+
+    getLists({ commit, dispatch }) {
+      api.get('lists')
+        .then(res => {
+          console.log(res);
+
+          commit('setLists', res.data)
+        })
+    },
+
     addBoard({ commit, dispatch }, boardData) {
       api.post('boards', boardData)
         .then(serverBoard => {
           dispatch('getBoards')
         })
-    }
+    },
     //#endregion
 
 
     //#region -- LISTS --
-
+    addList({ commit, dispatch }, listData) {
+      api.post('lists', listData)
+        .then(serverList => {
+          dispatch('getLists')
+        })
+    }
 
 
     //#endregion

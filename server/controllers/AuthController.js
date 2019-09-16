@@ -1,7 +1,8 @@
 import express from 'express'
-import _userService from '../services/UserService';
+import UserService from '../services/UserService';
 import { Authorize } from '../middleware/authorize'
 
+let _userService = new UserService().repository
 
 //PUBLIC
 export default class AuthController {
@@ -27,7 +28,7 @@ export default class AuthController {
         }
         try {
             //CHANGE THE PASSWORD TO A HASHED PASSWORD
-            req.body.hash = _userService.generateHash(req.body.password)
+            req.body.hash = UserService.generateHash(req.body.password)
 
             //CREATE THE USER
             let user = await _userService.create(req.body)

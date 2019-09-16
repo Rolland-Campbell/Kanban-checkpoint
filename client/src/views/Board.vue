@@ -1,10 +1,27 @@
 <template>
-  <div class="board">{{board.title}}</div>
+  <div class="container-fluid board">
+    {{board.title}}
+    <div class="row">
+      <button
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#create-list-modal"
+      >Create List</button>
+      <div class="col">
+        <list v-for="list in lists" :listProp="list" :key="list._id" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import list from "../components/List";
+import ListModal from "../components/ListModal";
 export default {
   name: "board",
+  mounted() {
+    this.$store.dispatch("getLists"); //which board has the lists
+  },
   computed: {
     board() {
       return (
@@ -15,6 +32,7 @@ export default {
       );
     }
   },
-  props: ["boardId"]
+  props: ["boardId"],
+  components: { list, ListModal }
 };
 </script>
