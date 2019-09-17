@@ -22,6 +22,7 @@ export default class AuthService {
       return res.data
     } catch (e) {
       throw new Error(`[registration failed] : ${!e.response ? 'No response from server' : e.response.data.error}`)
+
     }
   }
   static async Logout() {

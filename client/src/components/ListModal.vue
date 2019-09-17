@@ -55,7 +55,6 @@ export default {
   },
   methods: {
     addList() {
-      debugger;
       this.newList.boardId = board;
       this.$store.dispatch("addList", this.newList);
       this.newList = {};
