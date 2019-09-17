@@ -112,7 +112,7 @@ export default new Vuex.Store({
           commit('setLists', res.data)
         })
     },
-
+    //WTH Peyton!!
     getTasks({ commit, dispatch }, listId) {
       api.get(`lists/${listId}/tasks`)
         .then(res => {
