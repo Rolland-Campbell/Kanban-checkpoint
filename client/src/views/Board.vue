@@ -20,6 +20,7 @@
 <script>
 import list from "../components/List";
 import ListModal from "../components/ListModal";
+
 export default {
   name: "board",
   mounted() {

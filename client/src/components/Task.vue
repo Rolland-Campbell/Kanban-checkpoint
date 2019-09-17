@@ -4,7 +4,7 @@
       <h5 class="card-title">{{taskProp.title}}</h5>
       <p class="card-text">{{taskProp.body}}</p>
     </div>
-    <button class="btn-danger" @click.prevent="deleteTask()">Delete List</button>
+    <button class="btn-danger" @click.prevent="deleteTask()">Delete Task</button>
   </div>
 </template>
 
@@ -16,8 +16,8 @@ export default {
     data() {
       return {};
     },
-    deleteList() {
-      this.$store.dispatch("deleteList", this.listProp);
+    deleteTask() {
+      this.$store.dispatch("taskList", this.taskProp);
     }
   }
 };
