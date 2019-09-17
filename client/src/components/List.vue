@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">example text to build the card's content.</p>
+      <h5 class="card-title">{{listProp.title}}</h5>
+      <p class="card-text">{{listProp.body}}</p>
     </div>
   </div>
 </template>

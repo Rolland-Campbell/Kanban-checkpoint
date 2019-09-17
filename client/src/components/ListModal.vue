@@ -29,9 +29,10 @@
                 id="body"
                 placeholder="Enter some stuff"
                 v-model="newList.body"
+                required
               />
             </div>
-            <button type="submit" class="btn btn-primary">List Car</button>
+            <button type="submit" class="btn btn-primary">Make List</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -46,18 +47,21 @@
 <script>
 export default {
   name: "create-list-modal",
+  props: ["board"],
   data() {
     return {
       newList: {}
     };
   },
-  computed: {},
   methods: {
     addList() {
+      debugger;
+      this.newList.boardId = board;
       this.$store.dispatch("addList", this.newList);
       this.newList = {};
     }
   },
+  computed: {},
   components: {}
 };
 </script>

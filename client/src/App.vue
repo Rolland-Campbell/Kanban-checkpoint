@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  mounted() {
+    this.$store.dispatch("getBoards"); //which board has the lists
+  }
 };
 </script>
 
