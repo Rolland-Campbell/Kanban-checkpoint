@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
+//import { getMaxListeners } from 'cluster'
 //import { addListener } from 'cluster'
 
 Vue.use(Vuex)
@@ -32,6 +33,9 @@ export default new Vuex.Store({
     },
     setLists(state, lists) {
       state.lists = lists
+    },
+    addList(state, list) {
+      state.lists.push(list) //pushes the new list you just created to the lists []
     }
   },
   actions: {
@@ -78,6 +82,7 @@ export default new Vuex.Store({
     getLists({ commit, dispatch }, boardId) {
       api.get(`boards/${boardId}/lists`)
         .then(res => {
+          console.log(res);
           commit('setLists', res.data)
         })
     },
@@ -95,7 +100,7 @@ export default new Vuex.Store({
     async addList({ commit, dispatch }, payload) {
       try {
         let res = await api.post('/lists', payload)
-        dispatch('getLists')
+        commit('addList', res.data) //commit to addList in mutations, giving res.data
       } catch (error) {
         console.error(error)
       }

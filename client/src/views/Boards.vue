@@ -16,7 +16,7 @@
 export default {
   name: "boards",
   mounted() {
-    this.$store.dispatch("getBoards", this.boardId); //which board has the lists
+    this.$store.dispatch("getBoards"); //which board has the lists
   },
   data() {
     return {

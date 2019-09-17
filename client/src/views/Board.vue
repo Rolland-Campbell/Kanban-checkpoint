@@ -2,7 +2,7 @@
   <div class="container-fluid board">
     {{board.title}}
     <div class="row">
-      <ListModal :board="boardId" />
+      <ListModal :boardId="$route.params.boardId" />
       <button
         class="btn btn-primary"
         data-toggle="modal"
@@ -22,6 +22,7 @@ export default {
   name: "board",
   mounted() {
     this.$store.dispatch("getLists", this.boardId); //which board has the lists
+    this.$store.dispatch("getBoards");
   },
   computed: {
     board() {
