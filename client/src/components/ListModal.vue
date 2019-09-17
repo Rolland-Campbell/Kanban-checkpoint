@@ -1,6 +1,5 @@
 <template>
   <div id="create-list-modal" class="modal" tabindex="-1" role="dialog">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -22,17 +21,6 @@
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="body">Body</label>
-              <input
-                type="text"
-                class="form-control"
-                id="body"
-                placeholder="Enter some stuff"
-                v-model="newList.body"
-                required
-              />
-            </div>
             <button type="submit" class="btn btn-primary">Make List</button>
           </form>
         </div>
@@ -41,7 +29,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
