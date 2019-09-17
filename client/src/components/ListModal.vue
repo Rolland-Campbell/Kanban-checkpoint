@@ -1,5 +1,6 @@
 <template>
   <div id="create-list-modal" class="modal" tabindex="-1" role="dialog">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -35,9 +36,7 @@
             <button type="submit" class="btn btn-primary">Make List</button>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+        <div class="modal-footer"></div>
       </div>
     </div>
   </div>
@@ -55,7 +54,6 @@ export default {
   },
   methods: {
     addList() {
-      debugger;
       this.newList.boardId = this.$route.params.boardId; //route=URL, look in params of URl and get boardId;
       this.$store.dispatch("addList", this.newList);
       this.newList = {};

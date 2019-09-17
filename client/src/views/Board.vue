@@ -1,15 +1,17 @@
 <template>
   <div class="container-fluid board">
-    {{board.title}}
+    <h1 class="text-white">{{board.title}}</h1>
     <div class="row">
+      <div class="col-12 mt-3">
+        <button
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#create-list-modal"
+        >Create A List</button>
+      </div>
       <ListModal :boardId="$route.params.boardId" />
-      <button
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#create-list-modal"
-      >Create A List</button>
-      <div class="col">
-        <list v-for="list in lists" :listProp="list" :key="list._id" />
+      <div class="col-12 mt-3">
+        <list class="mt-2" v-for="list in lists" :listProp="list" :key="list._id" />
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
+import { defaultCoreCipherList } from 'constants'
 //import { getMaxListeners } from 'cluster'
 //import { addListener } from 'cluster'
 
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     addList(state, list) {
       state.lists.push(list) //pushes the new list you just created to the lists []
+    },
+    deleteList(state, list) {
+      state.lists.push(list)
     }
   },
   actions: {
@@ -104,8 +108,19 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
 
+    async deleteList({ commit, dispatch }, listId) {
+      try {
+        debugger
+        let res = await api.delete('/lists/', listId)
+        console.log(res);
+
+        commit('', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
     //#endregion
   }
