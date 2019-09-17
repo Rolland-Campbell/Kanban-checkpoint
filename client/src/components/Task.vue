@@ -1,17 +1,17 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">{{listProp.title}}</h5>
-      <p class="card-text">{{listProp.body}}</p>
+      <h5 class="card-title">{{taskProp.title}}</h5>
+      <p class="card-text">{{taskProp.body}}</p>
     </div>
-    <button class="btn-danger" @click.prevent="deleteList()">Delete List</button>
+    <button class="btn-danger" @click.prevent="deleteTask()">Delete List</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "List",
-  props: ["listProp"],
+  name: "Task",
+  props: ["taskProp"],
   methods: {
     data() {
       return {};

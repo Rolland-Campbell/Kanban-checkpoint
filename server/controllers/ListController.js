@@ -14,7 +14,7 @@ export default class ListController {
       .get('/:id', this.getById)
       .post('', this.create)
       // .put('/:id', this.edit)
-      // .delete('/:id', this.delete)
+      .delete('/:id', this.delete)
       .use(this.defaultRoute)
   }
 
@@ -34,6 +34,12 @@ export default class ListController {
       req.body.authorId = req.session.uid
       let data = await _listService.create(req.body)
       return res.status(201).send(data)
+    } catch (error) { next(error) }
+  }
+  async delete(req, res, next) {
+    try {
+      let data = await _listService.findOneAndRemove({ _id: req.params.id })
+      res.send("deleted value")
     } catch (error) { next(error) }
   }
 }

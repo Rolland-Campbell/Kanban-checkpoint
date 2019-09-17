@@ -78,7 +78,7 @@ export default new Vuex.Store({
     }) {
       try {
         let success = await AuthService.Logout()
-        if (!success) {}
+        if (!success) { }
         commit('resetState')
         router.push({
           name: "login"
@@ -91,20 +91,14 @@ export default new Vuex.Store({
 
 
     //#region -- BOARDS --
-    getBoards({
-      commit,
-      dispatch
-    }) {
+    getBoards({ commit, dispatch }) {
       api.get('boards')
         .then(res => {
           commit('setBoards', res.data)
         })
     },
 
-    getLists({
-      commit,
-      dispatch
-    }, boardId) {
+    getLists({ commit, dispatch }, boardId) {
       api.get(`boards/${boardId}/lists`)
         .then(res => {
           console.log(res);
@@ -112,10 +106,7 @@ export default new Vuex.Store({
         })
     },
 
-    addBoard({
-      commit,
-      dispatch
-    }, boardData) {
+    addBoard({ commit, dispatch }, boardData) {
       api.post('boards', boardData)
         .then(serverBoard => {
           dispatch('getBoards')
@@ -125,12 +116,8 @@ export default new Vuex.Store({
 
 
     //#region -- LISTS --
-    async addList({
-      commit,
-      dispatch
-    }, payload) {
+    async addList({ commit, dispatch }, payload) {
       try {
-        debugger
         let res = await api.post('/lists', payload)
         commit('addList', res.data) //commit to addList in mutations, giving res.data
       } catch (error) {
@@ -138,13 +125,11 @@ export default new Vuex.Store({
       }
     },
 
-    async deleteList({ commit, dispatch }, listId) {
+    async deleteList({ commit, dispatch }, list) {
       try {
-        debugger
-        let res = await api.delete('/lists/', listId)
-        console.log(res);
-
-        commit('', res.data)
+        let res = await api.delete('/lists/' + list._id)
+        commit('deleteList', res.data)
+        dispatch('getLists', list.boardId)
       } catch (error) {
         console.error(error)
       }
