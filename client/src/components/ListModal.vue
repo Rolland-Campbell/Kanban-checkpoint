@@ -30,7 +30,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: "create-list-modal",
