@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid board">
     <h1 class="text-white">{{board.title}}</h1>
+    <button class="btn btn-primary" @click="gotoBoards()">Back to Boards Page</button>
     <button class="btn btn-danger" @click="deleteBoard()">Delete Board</button>
     <div class="row">
       <div class="col-12 mt-3">
@@ -44,6 +45,9 @@ export default {
   methods: {
     deleteBoard() {
       this.$store.dispatch("deleteBoard", this.boardId);
+    },
+    gotoBoards() {
+      this.$router.push("/boards");
     }
   },
   props: ["boardId"],
