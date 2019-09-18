@@ -27,6 +27,10 @@ export default new Vuex.Store({
     activeBoard: {}
   },
   mutations: {
+    resetState(state, user) {
+      state.user = {}
+    },
+
     setUser(state, user) {
       state.user = user
     },
@@ -70,10 +74,7 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
-    async logout({
-      commit,
-      dispatch
-    }) {
+    async logout({ commit, dispatch }) {
       try {
         let success = await AuthService.Logout()
         if (!success) { }
@@ -134,6 +135,16 @@ export default new Vuex.Store({
       try {
         let res = await api.post('/tasks', payload)
         dispatch('getTasks', payload.listId) //commit to addTask in mutations, giving res.data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async deleteBoard({ commit, dispatch }, board) {
+      try {
+        let res = await api.delete('/boards/' + board)
+        dispatch('getBoards')
+        router.push("/boards")
       } catch (error) {
         console.error(error)
       }
