@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid board">
     <h1 class="text-white">{{board.title}}</h1>
+    <button class="btn btn-danger" @click="deleteBoard()">Delete Board</button>
     <div class="row">
       <div class="col-12 mt-3">
         <button
@@ -38,6 +39,11 @@ export default {
     },
     lists() {
       return this.$store.state.lists;
+    }
+  },
+  methods: {
+    deleteBoard() {
+      this.$store.dispatch("deleteBoard", this.boardId);
     }
   },
   props: ["boardId"],
