@@ -1,6 +1,5 @@
 <template>
   <div id="create-task-modal" class="modal" tabindex="-1" role="dialog">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -19,17 +18,6 @@
                 id="title"
                 placeholder="Enter a task title"
                 v-model="newTask.title"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="body">Body</label>
-              <input
-                type="text"
-                class="form-control"
-                id="body"
-                placeholder="Enter some stuff"
-                v-model="newTask.body"
                 required
               />
             </div>
@@ -59,7 +47,6 @@ export default {
     addTask() {
       this.$store.dispatch("addTask", this.newTask);
       this.newTask = {};
-      debugger;
     }
   },
   computed: {},

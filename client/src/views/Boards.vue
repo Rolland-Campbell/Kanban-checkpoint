@@ -2,7 +2,7 @@
   <div class="row">
     <button type="submit">Create Board</button>
     <div class="col">
-      <div class="boards">
+      <div class="boards text-white">
         WELCOME TO THE BOARDS!!!
         <form @submit.prevent="addBoard">
           <input type="text" placeholder="title" v-model="newBoard.title" required />
