@@ -21,6 +21,17 @@
                 required
               />
             </div>
+            <div class="form-group">
+              <label for="body">Body</label>
+              <input
+                type="text"
+                class="form-control"
+                id="body"
+                placeholder="Enter some stuff"
+                v-model="newTask.body"
+                required
+              />
+            </div>
             <button type="submit" class="btn btn-primary">Make a Task</button>
           </form>
         </div>

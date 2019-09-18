@@ -9,7 +9,7 @@ let _schema = new Schema({
   },
   body: {
     type: String,
-    required: false
+    required: true
   },
   authorId: {
     type: ObjectId,
