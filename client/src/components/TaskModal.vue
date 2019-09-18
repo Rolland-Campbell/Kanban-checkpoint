@@ -21,7 +21,7 @@
                 required
               />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="body">Body</label>
               <input
                 type="text"
@@ -31,7 +31,7 @@
                 v-model="newTask.body"
                 required
               />
-            </div>
+            </div>-->
             <button type="submit" class="btn btn-primary">Make a Task</button>
           </form>
         </div>
