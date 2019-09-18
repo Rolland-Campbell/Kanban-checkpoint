@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     tasks() {
-      return this.$store.state.tasks;
+      return this.$store.state.tasks[this.listProp._id]; //filter through array of tasks, show only the ones by listId
     }
   },
   components: { task, TaskModal }
