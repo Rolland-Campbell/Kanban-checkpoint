@@ -59,7 +59,6 @@ export default {
     addTask() {
       this.$store.dispatch("addTask", this.newTask);
       this.newTask = {};
-      debugger;
     }
   },
   computed: {},
