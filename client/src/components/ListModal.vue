@@ -20,7 +20,7 @@
                 v-model="newList.title"
                 required
               />
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="body">Body</label>
                 <input
                   type="text"
@@ -30,7 +30,7 @@
                   v-model="newList.body"
                   required
                 />
-              </div>
+              </div>-->
             </div>
             <button type="submit" class="btn btn-primary">Make List</button>
           </form>
