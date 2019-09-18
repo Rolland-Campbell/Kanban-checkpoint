@@ -10,9 +10,9 @@
         >Create A List</button>
       </div>
       <ListModal :boardId="$route.params.boardId" />
-      <div class="col-12 mt-3">
-        <list class="mt-2" v-for="list in lists" :listProp="list" :key="list._id" />
-      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <list class="mt-2" v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
   </div>
 </template>

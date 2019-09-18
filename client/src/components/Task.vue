@@ -17,7 +17,7 @@ export default {
       return {};
     },
     deleteTask() {
-      this.$store.dispatch("taskList", this.taskProp);
+      this.$store.dispatch("deleteTask", this.taskProp);
     }
   }
 };
