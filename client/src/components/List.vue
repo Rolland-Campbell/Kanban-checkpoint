@@ -8,7 +8,7 @@
         <button
           class="btn btn-primary"
           data-toggle="modal"
-          data-target="#create-task-modal"
+          :data-target="'#create-task-modal' +listProp._id"
         >Create A Task</button>
       </div>
       <TaskModal :listId="listProp._id" />
@@ -29,7 +29,7 @@ export default {
   mounted() {
     this.$store.dispatch("getTasks", this.listProp._id);
   },
-  props: ["listProp", "listId"],
+  props: ["listProp"],
   methods: {
     deleteList() {
       this.$store.dispatch("deleteList", this.listProp);

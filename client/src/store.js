@@ -109,11 +109,13 @@ export default new Vuex.Store({
         })
     },
 
-    addBoard({ commit, dispatch }, boardData) {
-      api.post('boards', boardData)
-        .then(serverBoard => {
-          dispatch('getBoards')
-        })
+    async addBoard({ commit, dispatch }, boardData) {
+      try {
+        let res = await api.post('boards', boardData)
+        dispatch('getBoards')
+      } catch (error) {
+        console.error(error)
+      }
     },
     //#endregion
 
