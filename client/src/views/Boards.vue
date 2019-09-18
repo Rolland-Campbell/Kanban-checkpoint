@@ -1,12 +1,12 @@
 <template>
   <div class="row">
-    <button type="submit">Create Board</button>
     <div class="col">
       <div class="boards text-white">
         WELCOME TO THE BOARDS!!!
-        <form @submit.prevent="addBoard">
+        <form @submit.prevent="addBoard()">
           <input type="text" placeholder="title" v-model="newBoard.title" required />
           <input type="text" placeholder="description" v-model="newBoard.description" />
+          <button type="submit">Create Board</button>
         </form>
         <div v-for="board in boards" :key="board._id">
           <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
