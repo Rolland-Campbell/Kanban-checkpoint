@@ -20,6 +20,17 @@
                 v-model="newList.title"
                 required
               />
+              <div class="form-group">
+                <label for="body">Body</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="body"
+                  placeholder="Enter some stuff"
+                  v-model="newList.body"
+                  required
+                />
+              </div>
             </div>
             <button type="submit" class="btn btn-primary">Make List</button>
           </form>
