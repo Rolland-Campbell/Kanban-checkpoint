@@ -23,31 +23,22 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     lists: [],
-    tasks: [],
+    tasks: {},
     activeBoard: {}
   },
   mutations: {
     setUser(state, user) {
       state.user = user
     },
-    setBoards(state, boards) {
-      state.boards = boards
+    setBoards(state, data) {
+      state.boards = data
     },
-    setLists(state, lists) {
-      state.lists = lists
+    setLists(state, data) {
+      state.lists = data
     },
-    setTasks(state, tasks) {
-      state.tasks = tasks
+    setTasks(state, data) {
+      Vue.set(state.tasks, data.listId, data.tasks)//state.tasks[data.listId] = data.tasks
     },
-    addList(state, list) {
-      state.lists.push(list) //pushes the new list you just created to the lists []
-    },
-    addTask(state, task) {
-      state.tasks.push(task)
-    },
-    deleteList(state, list) {
-      state.lists.push(list)
-    }
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -108,16 +99,13 @@ export default new Vuex.Store({
     getLists({ commit, dispatch }, boardId) {
       api.get(`boards/${boardId}/lists`)
         .then(res => {
-          console.log(res);
           commit('setLists', res.data)
         })
     },
-    //WTH Peyton!!
     getTasks({ commit, dispatch }, listId) {
       api.get(`lists/${listId}/tasks`)
         .then(res => {
-          console.log(res);
-          commit('setTasks', res.data)
+          commit('setTasks', { tasks: res.data, listId })
         })
     },
 
@@ -134,7 +122,7 @@ export default new Vuex.Store({
     async addList({ commit, dispatch }, payload) {
       try {
         let res = await api.post('/lists', payload)
-        commit('addList', res.data) //commit to addList in mutations, giving res.data
+        dispatch("getLists", payload.boardId)
       } catch (error) {
         console.error(error)
       }
@@ -152,7 +140,6 @@ export default new Vuex.Store({
     async deleteList({ commit, dispatch }, list) {
       try {
         let res = await api.delete('/lists/' + list._id)
-        commit('deleteList', res.data)
         dispatch('getLists', list.boardId)
       } catch (error) {
         console.error(error)
