@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addComment()">
+          <form @submit.prevent="addComment(event)">
             <div class="form-group">
               <label for="body">Body</label>
               <input
@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       newComment: {
+        body: "",
         taskId: this.taskId,
         listId: this.listId,
         boardId: this.$route.params.boardId
@@ -46,9 +47,9 @@ export default {
   },
   computed: {},
   methods: {
-    addComment() {
+    addComment(e) {
       this.$store.dispatch("addComment", this.newComment);
-      this.newComment = {};
+      e.target.reset();
     }
   },
   components: {}

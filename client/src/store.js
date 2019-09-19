@@ -114,7 +114,6 @@ export default new Vuex.Store({
         })
     },
     getComments({ commit, dispatch }, taskId) {
-
       api.get(`tasks/${taskId}/comments`)
         .then(res => {
           commit('setComments', { comments: res.data, taskId })
@@ -134,7 +133,7 @@ export default new Vuex.Store({
     //#region -- LISTS --
     async addList({ commit, dispatch }, payload) {
       try {
-        let res = await api.post('/lists', payload)
+        await api.post('/lists', payload)
         dispatch("getLists", payload.boardId)
       } catch (error) {
         console.error(error)
@@ -143,7 +142,7 @@ export default new Vuex.Store({
 
     async addTask({ commit, dispatch }, payload) {
       try {
-        let res = await api.post('/tasks', payload)
+        await api.post('/tasks', payload)
         dispatch('getTasks', payload.listId) //commit to addTask in mutations, giving res.data
       } catch (error) {
         console.error(error)
@@ -151,7 +150,7 @@ export default new Vuex.Store({
     },
     async addComment({ commit, dispatch }, payload) {
       try {
-        let res = await api.post('/comments', payload)
+        await api.post('/comments', payload)
         dispatch('getComments', payload.taskId)
       } catch (error) {
         console.error(error)

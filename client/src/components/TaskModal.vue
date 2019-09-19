@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addTask()">
+          <form @submit.prevent="addTask(event)">
             <div class="form-group">
               <label for="title">Title</label>
               <input
@@ -38,15 +38,16 @@ export default {
   data() {
     return {
       newTask: {
+        title: "",
         listId: this.listId,
         boardId: this.$route.params.boardId
       }
     };
   },
   methods: {
-    addTask() {
+    addTask(e) {
       this.$store.dispatch("addTask", this.newTask);
-      this.newTask = {};
+      e.target.reset();
     }
   },
   computed: {},
