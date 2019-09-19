@@ -16,6 +16,7 @@ let _schema = new Schema({
 _schema.pre('deleteMany', function (next) {
   //lets find all the comments and remove them
   Promise.all([
+    // @ts-ignore
     _commentRepo.deleteMany({ taskId: this._conditions._id }),
   ])
     .then(() => next())
