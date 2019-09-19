@@ -18,6 +18,12 @@
       <comment class="mt-2" v-for="comment in comments" :commentProp="comment" :key="comment._id" />
     </div>
     <!-- end of comment card -->
+    <!-- dropdown for list select -->
+    <select v-model="selected">
+      <option disabled>Move task to selected list</option>
+      <option v-for="list in lists" :key="list._id" :value="list._id">{{list.title}}</option>
+    </select>
+    <button class="btn btn-warning" @click="moveTask()">Move it</button>
   </div>
 </template>
 
@@ -30,17 +36,32 @@ export default {
   mounted() {
     this.$store.dispatch("getComments", this.taskProp._id);
   },
+  data() {
+    return {
+      selected: ""
+    };
+  },
   methods: {
     data() {
       return {};
     },
     deleteTask() {
       this.$store.dispatch("deleteTask", this.taskProp);
+    },
+    moveTask() {
+      this.$store.dispatch("moveTask", {
+        taskId: this.taskProp._id,
+        listId: this.selected,
+        oldListId: this.taskProp.listId
+      });
     }
   },
   computed: {
     comments() {
       return this.$store.state.comments[this.taskProp._id]; //filter through array of tasks, show only the ones by listId
+    },
+    lists() {
+      return this.$store.state.lists;
     }
   },
   components: { comment, commentModal }

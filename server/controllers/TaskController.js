@@ -17,7 +17,7 @@ export default class TaskController {
       .get('/:id', this.getById)
       .get('/:id/comments', this.getCommentsById)
       .post('', this.create)
-      // .put('/:id', this.edit)
+      .put('/:id', this.edit)
       .delete('/:id', this.delete)
       .use(this.defaultRoute)
   }
@@ -52,5 +52,9 @@ export default class TaskController {
       let data = await _taskService.findOneAndRemove({ _id: req.params.id })
       res.send("deleted value")
     } catch (error) { next(error) }
+  }
+  async edit(req, res, next) {
+    let data = await _taskService.findOneAndUpdate({ _id: req.params.id }, req.body)
+    res.send(data)
   }
 }

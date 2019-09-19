@@ -158,6 +158,16 @@ export default new Vuex.Store({
       }
     },
 
+    async moveTask({ commit, dispatch }, payload) {
+      try {
+        let res = await api.put('/tasks/' + payload.taskId, payload) //adds the task Id onto URL
+        dispatch('getTasks', payload.listId) //update new list with task
+        dispatch('getTasks', payload.oldListId) //update old list with one less task
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
     async deleteBoard({ commit, dispatch }, board) {
       try {
         let res = await api.delete('/boards/' + board)
