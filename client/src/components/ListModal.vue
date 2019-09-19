@@ -44,7 +44,7 @@
 <script>
 export default {
   name: "create-list-modal",
-  props: ["boardInfo"],
+  props: ["boardId"],
   data() {
     return {
       newList: {}
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     addList() {
-      this.newList.boardInfo._id = this.$route.params.boardInfo._id; //route=URL, look in params of URl and get boardId;
+      this.newList.boardId = this.$route.params.boardId; //route=URL, look in params of URl and get boardId;
       this.$store.dispatch("addList", this.newList);
       this.newList = {};
     }
