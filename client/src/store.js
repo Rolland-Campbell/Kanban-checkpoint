@@ -24,6 +24,7 @@ export default new Vuex.Store({
     boards: [],
     lists: [],
     tasks: {},
+    comments: {},
     activeBoard: {}
   },
   mutations: {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     setTasks(state, data) {
       Vue.set(state.tasks, data.listId, data.tasks)//state.tasks[data.listId] = data.tasks
+    },
+    setComments(state, data) {
+      Vue.set(state.comments, data.taskId, data.comments)
     },
   },
   actions: {
@@ -109,7 +113,13 @@ export default new Vuex.Store({
           commit('setTasks', { tasks: res.data, listId })
         })
     },
+    getComments({ commit, dispatch }, taskId) {
 
+      api.get(`tasks/${taskId}/comments`)
+        .then(res => {
+          commit('setComments', { comments: res.data, taskId })
+        })
+    },
     async addBoard({ commit, dispatch }, boardData) {
       try {
         let res = await api.post('boards', boardData)
@@ -139,6 +149,14 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async addComment({ commit, dispatch }, payload) {
+      try {
+        let res = await api.post('/comments', payload)
+        dispatch('getComments', payload.taskId)
+      } catch (error) {
+        console.error(error)
+      }
+    },
 
     async deleteBoard({ commit, dispatch }, board) {
       try {
@@ -162,6 +180,14 @@ export default new Vuex.Store({
       try {
         let res = await api.delete('/tasks/' + task._id)
         dispatch('getTasks', task.listId)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteComment({ commit, dispatch }, comment) {
+      try {
+        let res = await api.delete('/comments/' + comment._id)
+        dispatch('getComments', comment.taskId)
       } catch (error) {
         console.error(error)
       }

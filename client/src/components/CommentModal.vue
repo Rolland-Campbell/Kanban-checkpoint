@@ -1,27 +1,27 @@
 <template>
-  <div :id="'create-task-modal' + listId" class="modal" tabindex="-1" role="dialog">
+  <div :id="'create-comment-modal' + taskId" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Create a task for your list!</h5>
+          <h5 class="modal-title">Add a task comment</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addTask()">
+          <form @submit.prevent="addComment()">
             <div class="form-group">
-              <label for="title">Title</label>
+              <label for="body">Body</label>
               <input
                 type="text"
                 class="form-control"
-                id="title"
-                placeholder="Enter a task title"
-                v-model="newTask.title"
+                id="body"
+                placeholder="Enter your comment"
+                v-model="newComment.body"
                 required
               />
             </div>
-            <button type="submit" class="btn btn-primary">Make a Task</button>
+            <button type="submit" class="btn btn-primary">Create Comment</button>
           </form>
         </div>
         <div class="modal-footer"></div>
@@ -33,23 +33,24 @@
 
 <script>
 export default {
-  name: "create-task-modal",
-  props: ["listId"],
+  name: "create-comment-modal",
+  props: ["taskId", "listId"],
   data() {
     return {
-      newTask: {
+      newComment: {
+        taskId: this.taskId,
         listId: this.listId,
         boardId: this.$route.params.boardId
       }
     };
   },
+  computed: {},
   methods: {
-    addTask() {
-      this.$store.dispatch("addTask", this.newTask);
-      this.newTask = {};
+    addComment() {
+      this.$store.dispatch("addComment", this.newComment);
+      this.newComment = {};
     }
   },
-  computed: {},
   components: {}
 };
 </script>
