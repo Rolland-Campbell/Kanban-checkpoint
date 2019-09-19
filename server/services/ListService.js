@@ -1,6 +1,10 @@
 import mongoose from "mongoose"
+import TaskService from './TaskService.js'
+import CommentService from './CommentService.js'
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
+let _taskRepo = new TaskService().repository
+let _commentRepo = new CommentService().repository
 
 let _schema = new Schema({
   title: {
@@ -26,10 +30,11 @@ let _schema = new Schema({
 
 //CASCADE ON DELETE
 _schema.pre('deleteMany', function (next) {
-  //lets find all the lists and remove them
+  //lets find all the tasks and remove them
   Promise.all([
-      //_taskService.deleteMany({ listId: this._conditions_id }),
-    ])
+    _taskRepo.deleteMany({ listId: this._conditions._id }),
+    _commentRepo.deleteMany({ listId: this._conditions._id }),
+  ])
     .then(() => next())
     .catch(err => next(err))
 })
