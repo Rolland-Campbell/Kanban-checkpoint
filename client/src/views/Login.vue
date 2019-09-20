@@ -12,8 +12,8 @@
       <button class="btn btn-warning" type="submit">Create Account</button>
     </form>
     <div class="action" @click="loginForm = !loginForm">
-      <p v-if="loginForm">No account? Click here to Register</p>
-      <p v-else>Already have an account? Click here to Login</p>
+      <p class="text-white" v-if="loginForm">No account? Click here to Register</p>
+      <p class="text-white" v-else>Already have an account? Click here to Login</p>
     </div>
   </div>
 </template>

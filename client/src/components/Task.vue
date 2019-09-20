@@ -1,29 +1,30 @@
 <template>
-  <div class="card">
+  <div class="card mt-1 ml-0 mr-0 p-1">
     <div class="card-body">
-      <h5 class="card-title">{{taskProp.title}}</h5>
-      <p class="card-text">{{taskProp.body}}</p>
+      <h3 class="card-title text-white">Task: {{taskProp.title}}</h3>
     </div>
-    <button class="btn-danger" @click.prevent="deleteTask()">Delete Task</button>
     <!-- comment card in card -->
-    <div class="col-12 mt-3">
+    <div class="col-12">
+      <button class="btn btn-danger" @click.prevent="deleteTask()">Delete Task</button>
+      <br />
       <button
-        class="btn btn-primary"
+        class="btn btn-primary mt-3"
         data-toggle="modal"
         :data-target="'#create-comment-modal' + taskProp._id"
       >Add a comment</button>
     </div>
+    <hr />
     <commentModal :taskId="taskProp._id" :listId="taskProp.listId" />
-    <div class="col-12 mt-3">
-      <comment class="mt-2" v-for="comment in comments" :commentProp="comment" :key="comment._id" />
+    <div class="col-12">
+      <comment class="m-2" v-for="comment in comments" :commentProp="comment" :key="comment._id" />
+      <!-- end of comment card -->
+      <!-- dropdown for list select -->
+      <select class="mt-3" v-model="selected">
+        <option disabled>Move task to selected list</option>
+        <option v-for="list in lists" :key="list._id" :value="list._id">{{list.title}}</option>
+      </select>
+      <button class="btn btn-warning ml-1" @click="moveTask()">Move Task</button>
     </div>
-    <!-- end of comment card -->
-    <!-- dropdown for list select -->
-    <select v-model="selected">
-      <option disabled>Move task to selected list</option>
-      <option v-for="list in lists" :key="list._id" :value="list._id">{{list.title}}</option>
-    </select>
-    <button class="btn btn-warning" @click="moveTask()">Move it</button>
   </div>
 </template>
 

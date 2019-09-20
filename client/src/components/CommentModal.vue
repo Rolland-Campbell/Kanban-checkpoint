@@ -47,9 +47,9 @@ export default {
   },
   computed: {},
   methods: {
-    addComment(e) {
+    addComment(event) {
       this.$store.dispatch("addComment", this.newComment);
-      e.target.reset();
+      event.target.reset();
     }
   },
   components: {}

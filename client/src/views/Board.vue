@@ -1,20 +1,31 @@
 <template>
   <div class="container-fluid board">
-    <h1 class="text-white">{{board.title}}</h1>
-    <button class="btn btn-primary" @click="gotoBoards()">Back to Boards Page</button>
-    <button class="btn btn-danger" @click="deleteBoard()">Delete Board</button>
-    <div class="row">
-      <div class="col-12 mt-3">
+    <div class="row text-center">
+      <div class="col-4">
+        <button class="btn btn-primary mt-4" @click="gotoBoards()">Back to Boards Page</button>
+      </div>
+      <div class="col-4">
+        <h1 class="text-white">{{board.title}} Board</h1>
+        <h5 class="text-white">{{board.description}}</h5>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-danger mt-4" @click="deleteBoard()">Delete Board</button>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-4"></div>
+      <div class="col-4">
         <button
           class="btn btn-primary"
           data-toggle="modal"
           data-target="#create-list-modal"
         >Create A List</button>
       </div>
-      <ListModal :boardId="$route.params.boardId" />
+      <div class="col-4"></div>
     </div>
-    <div class="col-12 mt-3">
-      <list class="mt-2" v-for="list in lists" :listProp="list" :key="list._id" />
+    <div class="row m-2">
+      <ListModal :boardId="$route.params.boardId" />
+      <list class="m-3" v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
   </div>
 </template>

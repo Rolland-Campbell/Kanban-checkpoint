@@ -1,10 +1,12 @@
 <template>
-  <div class="card">
+  <div class="card row p-0">
     <div class="card-body">
-      <h5 class="card-title">{{listProp.title}}</h5>
+      <h5 class="card-title">{{listProp.title}} List</h5>
       <p class="card-text">{{listProp.body}}</p>
       <!-- start of card in card -->
-      <div class="col-12 mt-3">
+      <div class="mt-3">
+        <button class="btn btn-danger m-2" @click.prevent="deleteList()">Delete List</button>
+        <br />
         <button
           class="btn btn-primary"
           data-toggle="modal"
@@ -12,12 +14,11 @@
         >Create A Task</button>
       </div>
       <TaskModal :listId="listProp._id" />
-      <div class="col-12 mt-3">
-        <task class="mt-2" v-for="task in tasks" :taskProp="task" :key="task._id" />
+      <div class="col mt-3">
+        <task class="bg-secondary" v-for="task in tasks" :taskProp="task" :key="task._id" />
       </div>
       <!-- end of card in card -->
     </div>
-    <button class="btn-danger" @click.prevent="deleteList()">Delete List</button>
   </div>
 </template>
 

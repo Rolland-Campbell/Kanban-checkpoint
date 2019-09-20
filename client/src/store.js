@@ -142,8 +142,8 @@ export default new Vuex.Store({
 
     async addTask({ commit, dispatch }, payload) {
       try {
-        await api.post('/tasks', payload)
-        dispatch('getTasks', payload.listId) //commit to addTask in mutations, giving res.data
+        await api.post('/tasks', payload) //puts task on server, payload is the task info from modal
+        dispatch('getTasks', payload.listId) //get tasks off server by list id
       } catch (error) {
         console.error(error)
       }
