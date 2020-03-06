@@ -1,7 +1,7 @@
 <template>
-  <div class="card mt-1 ml-0 mr-0 p-1">
+  <div class="card">
     <div class="card-body">
-      <h3 class="card-title text-white">Task: {{taskProp.title}}</h3>
+      <h3 class="card-title">Task: {{taskProp.title}}</h3>
     </div>
     <!-- comment card in card -->
     <div class="col-12">
@@ -19,7 +19,7 @@
       <comment class="m-2" v-for="comment in comments" :commentProp="comment" :key="comment._id" />
       <!-- end of comment card -->
       <!-- dropdown for list select -->
-      <select class="mt-3" v-model="selected">
+      <select class="dropdown" v-model="selected">
         <option disabled>Move task to selected list</option>
         <option v-for="list in lists" :key="list._id" :value="list._id">{{list.title}}</option>
       </select>
@@ -70,4 +70,17 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  background-color: rgba(255, 255, 255, 0.548);
+  color: black;
+  border-color: rgba(0, 0, 0, 0.479);
+  border-style: solid;
+  padding-bottom: 3vh;
+}
+
+.dropdown {
+  margin-top: 3vh;
+  height: 4vh;
+  background-color: rgba(255, 248, 220, 0.459);
+}
 </style>

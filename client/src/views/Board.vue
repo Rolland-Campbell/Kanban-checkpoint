@@ -5,8 +5,8 @@
         <button class="btn btn-primary mt-4" @click="gotoBoards()">Back to Boards Page</button>
       </div>
       <div class="col-4">
-        <h1 class="text-white">{{board.title}} Board</h1>
-        <h5 class="text-white">{{board.description}}</h5>
+        <h1 class="boardTitle">{{board.title}} Board</h1>
+        <h5 class="boardTitle">{{board.description}}</h5>
       </div>
       <div class="col-4">
         <button class="btn btn-danger mt-4" @click="deleteBoard()">Delete Board</button>
@@ -23,9 +23,9 @@
       </div>
       <div class="col-4"></div>
     </div>
-    <div class="row m-2">
+    <div class="row listRow">
       <ListModal :boardId="$route.params.boardId" />
-      <list class="m-3" v-for="list in lists" :listProp="list" :key="list._id" />
+      <list v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
   </div>
 </template>
@@ -43,7 +43,6 @@ export default {
   computed: {
     board() {
       return (
-        //FIXME This does not work on page reload because the boards array is empty in the store
         this.$store.state.boards.find(b => b._id == this.boardId) || {
           title: "Loading..."
         }
@@ -65,3 +64,35 @@ export default {
   components: { list, ListModal }
 };
 </script>
+
+<style scoped>
+.board {
+  height: 100vh;
+  background-image: url("https://expertvagabond.com/wp-content/uploads/highlands-buachaille-etive-900x600.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.cardView {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 30vw;
+  background-color: rgba(255, 255, 255, 0.377);
+  border-radius: 20px;
+}
+
+.boardTitle {
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.listRow {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5vh;
+}
+</style>

@@ -1,8 +1,8 @@
 <template>
   <!-- <div class="card">
   <div class="card-body">-->
-  <p class="text-white text-left">
-    <button class="btn btn-danger text-white p-1" @click.prevent="deleteComment()">x</button>
+  <p class="commentText">
+    <button class="btn btn-danger" @click.prevent="deleteComment()">x</button>
     {{commentProp.body}}
   </p>
   <!-- </div>
@@ -30,4 +30,15 @@ export default {
 
 
 <style scoped>
+.commentText {
+  color: black;
+  text-align: left;
+}
+
+.btn {
+  border-radius: 50%;
+  height: 2vw;
+  width: 2vw;
+  padding: 0;
+}
 </style>

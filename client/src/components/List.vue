@@ -15,7 +15,7 @@
       </div>
       <TaskModal :listId="listProp._id" />
       <div class="col mt-3">
-        <task class="bg-secondary" v-for="task in tasks" :taskProp="task" :key="task._id" />
+        <task class="taskView" v-for="task in tasks" :taskProp="task" :key="task._id" />
       </div>
       <!-- end of card in card -->
     </div>
