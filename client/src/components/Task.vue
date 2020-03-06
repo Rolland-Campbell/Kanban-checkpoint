@@ -76,6 +76,7 @@ export default {
   border-color: rgba(0, 0, 0, 0.479);
   border-style: solid;
   padding-bottom: 3vh;
+  margin-bottom: 1vh;
 }
 
 .dropdown {

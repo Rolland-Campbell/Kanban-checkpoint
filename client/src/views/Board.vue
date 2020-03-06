@@ -5,7 +5,7 @@
         <button class="btn btn-primary mt-4" @click="gotoBoards()">Back to Boards Page</button>
       </div>
       <div class="col-4">
-        <h1 class="boardTitle">{{board.title}} Board</h1>
+        <h1 class="boardTitle">{{board.title}}</h1>
         <h5 class="boardTitle">{{board.description}}</h5>
       </div>
       <div class="col-4">
@@ -72,6 +72,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  overflow: hidden;
+  overflow: auto;
 }
 
 .cardView {

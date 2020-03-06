@@ -1,7 +1,7 @@
 <template>
   <div class="card row p-0">
     <div class="card-body">
-      <h5 class="card-title">{{listProp.title}} List</h5>
+      <h5 class="card-title">{{listProp.title}}</h5>
       <p class="card-text">{{listProp.body}}</p>
       <!-- start of card in card -->
       <div class="mt-3">

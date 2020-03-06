@@ -4,7 +4,7 @@
       <div class="boards">
         <h1>Welcome back {{this.$store.state.user.name}},</h1>
         <h2>what would you like to work on today?</h2>
-        <button class="btn btn-success mt-4" @click="logout()">Logout</button>
+        <button class="btn btn-success mt-4" @click.prevent="logout()">Logout</button>
         <form class="mt-3" @submit.prevent="addBoard()">
           <input type="text" placeholder="title" v-model="newBoard.title" required />
           <input type="text" placeholder="description" v-model="newBoard.description" />
@@ -47,8 +47,8 @@ export default {
   methods: {
     addBoard() {
       this.$store.dispatch("addBoard", this.newBoard);
-      this.newBoard = { title: "", description: "" };
     },
+
     logout() {
       this.$store.dispatch("logout");
     }
